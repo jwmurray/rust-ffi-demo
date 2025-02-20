@@ -4,19 +4,17 @@
 using namespace std;
 
 int main() {
-
-
     //
     // Call FFI functions
     //
 
-    const char *first_name = "Wison";
-    const char *last_name = "Ye";
-    const char *street_address = "Wison's street_address here";
-    const char *city = "Wison's city here";
-    const char *state = "Wison's state here";
-    const char *country = "Wison's country here";
-    person_t *wison = create_new_person(
+    const char *first_name = "Murray";
+    const char *last_name = "John";
+    const char *street_address = "`son's street_address here";
+    const char *city = "John's city here";
+    const char *state = "John's state here";
+    const char *country = "John's country here";
+    person_t *John = create_new_person(
         first_name,
         last_name,
         1,
@@ -27,13 +25,13 @@ int main() {
         country
     );
 
-    print_person_info(wison);
+    print_person_info(John);
 
-    char *person_info_ptr = get_person_info(wison);
+    char *person_info_ptr = get_person_info(John);
     cout << "\n>>> C++ caller print >>>\n" << person_info_ptr << "\n\n";
     release_get_person_info(person_info_ptr);
     
-    release_person_pointer(wison);
+    release_person_pointer(John);
     
     return 0;
 }

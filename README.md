@@ -559,7 +559,7 @@ fn main() {
 
     </br>
 
-- Generate [`src/manual_bindings.rs`](https://github.com/wisonye/rust-ffi-demo/blob/master/calling-ffi/rust/src/manual_bindings.rs) by running the command below:
+- Generate [`src/manual_bindings.rs`](https://github.com/jwmurray/rust-ffi-demo/blob/master/calling-ffi/rust/src/manual_bindings.rs) by running the command below:
 
     ```bash
     bindgen \
@@ -627,11 +627,11 @@ fn main() {
     </br>
 
 
-- [`src/bin/manual_ffi_binding_demo.rs`](https://github.com/wisonye/rust-ffi-demo/blob/master/calling-ffi/rust/src/bin/manual_ffi_binding_demo.rs) includes all the FFI calling samples.
+- [`src/bin/manual_ffi_binding_demo.rs`](https://github.com/jwmurray/rust-ffi-demo/blob/master/calling-ffi/rust/src/bin/manual_ffi_binding_demo.rs) includes all the FFI calling samples.
 
 </br>
 
-- Create [`build.rs`](https://github.com/wisonye/rust-ffi-demo/blob/master/calling-ffi/rust/build.rs) with the following content:
+- Create [`build.rs`](https://github.com/jwmurray/rust-ffi-demo/blob/master/calling-ffi/rust/build.rs) with the following content:
 
     ```rust
     // FFI custom build script.
@@ -710,7 +710,7 @@ will be trouble or inconvenience. That's how `bindgen` automatic `FFI` bindings 
 
     </br>
 
-- Replace the following content to the [`build.rs`](https://github.com/wisonye/rust-ffi-demo/blob/master/calling-ffi/rust/build.rs):
+- Replace the following content to the [`build.rs`](https://github.com/jwmurray/rust-ffi-demo/blob/master/calling-ffi/rust/build.rs):
 
     ```rust
     // FFI custom build script.
@@ -787,7 +787,7 @@ will be trouble or inconvenience. That's how `bindgen` automatic `FFI` bindings 
 
     </br>
 
-- Add the following content to [`src/main.rs`](https://github.com/wisonye/rust-ffi-demo/blob/master/calling-ffi/rust/src/main.rs):
+- Add the following content to [`src/main.rs`](https://github.com/jwmurray/rust-ffi-demo/blob/master/calling-ffi/rust/src/main.rs):
 
     ```rust
     #![allow(non_upper_case_globals)]
@@ -1074,7 +1074,7 @@ memory correctly!!!
 
     </br>
 
-    Here is the [`ffi-dynamic-lib/rust/src/main.rs`](https://github.com/wisonye/rust-ffi-demo/blob/master/ffi-dynamic-lib/rust/src/main.rs).
+    Here is the [`ffi-dynamic-lib/rust/src/main.rs`](https://github.com/jwmurray/rust-ffi-demo/blob/master/ffi-dynamic-lib/rust/src/main.rs).
 
     </br>
 
@@ -1164,7 +1164,7 @@ cargo clean && cargo build --release
     # Also, you can print the shared libraries used for linked Mach-O files:
     objdump -macho -dylibs-used ./target/release/librust.dylib
     # ./target/release/librust.dylib:
-    #         /Users/wison/Rust/rust-ffi-demo/ffi-dynamic-lib/rust/target/release/deps/librust.dylib (compatibility version 0.0.0, current version 0.0.0)
+    #         /Users/jmurray/Rust/rust-ffi-demo/ffi-dynamic-lib/rust/target/release/deps/librust.dylib (compatibility version 0.0.0, current version 0.0.0)
     #         /usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 1252.250.1)
     #         /usr/lib/libresolv.9.dylib (compatibility version 1.0.0, current version 1.0.0)
     ```
@@ -1180,7 +1180,7 @@ cargo clean && cargo build --release
 
 </br>
 
-#### 6.1 Create [`calling-ffi/cpp/src/ffi.h`](https://github.com/wisonye/rust-ffi-demo/blob/master/calling-ffi/cpp/src/ffi.h) with the following content:
+#### 6.1 Create [`calling-ffi/cpp/src/ffi.h`](https://github.com/jwmurray/rust-ffi-demo/blob/master/calling-ffi/cpp/src/ffi.h) with the following content:
 
 ```c++
 #pragma once
@@ -1216,7 +1216,7 @@ void release_get_person_info(char *);
 
 </br>
 
-#### 6.2 Create [`calling-ffi/cpp/src/main.cpp`](https://github.com/wisonye/rust-ffi-demo/blob/master/calling-ffi/cpp/src/main.cpp) with the following content:
+#### 6.2 Create [`calling-ffi/cpp/src/main.cpp`](https://github.com/jwmurray/rust-ffi-demo/blob/master/calling-ffi/cpp/src/main.cpp) with the following content:
 
 ```c++
 #include "ffi.h"
@@ -1231,13 +1231,13 @@ int main() {
     // Call FFI functions
     //
 
-    const char *first_name = "Wison";
+    const char *first_name = "John";
     const char *last_name = "Ye";
-    const char *street_address = "Wison's street_address here";
-    const char *city = "Wison's city here";
-    const char *state = "Wison's state here";
-    const char *country = "Wison's country here";
-    person_t *wison = create_new_person(
+    const char *street_address = "John's street_address here";
+    const char *city = "John's city here";
+    const char *state = "John's state here";
+    const char *country = "John's country here";
+    person_t *john = create_new_person(
         first_name,
         last_name,
         1,
@@ -1248,13 +1248,13 @@ int main() {
         country
     );
 
-    print_person_info(wison);
+    print_person_info(john);
 
-    char *person_info_ptr = get_person_info(wison);
+    char *person_info_ptr = get_person_info(john);
     cout << "\n>>> C++ caller print >>>\n" << person_info_ptr << "\n\n";
     release_get_person_info(person_info_ptr);
     
-    release_person_pointer(wison);
+    release_person_pointer(john);
     
     return 0;
 }
@@ -1262,7 +1262,7 @@ int main() {
 </br>
 
 
-#### 6.3 Create [`calling-ffi/cpp/CMakeLists.txt`](https://github.com/wisonye/rust-ffi-demo/blob/master/calling-ffi/cpp/CMakeLists.txt) with the following content:
+#### 6.3 Create [`calling-ffi/cpp/CMakeLists.txt`](https://github.com/jwmurray/rust-ffi-demo/blob/master/calling-ffi/cpp/CMakeLists.txt) with the following content:
 
 ```bash
 cmake_minimum_required(VERSION "3.17.2")
@@ -1379,7 +1379,7 @@ bindings to native libraries without writing any C++ code.
 
 ###### 7.2.2 What `C++` types supported by the `ffi-napi`
 
-Here is the [`src/print_ffi_types.js`](https://github.com/wisonye/rust-ffi-demo/blob/master/calling-ffi/node/src/print_ffi_types.js)
+Here is the [`src/print_ffi_types.js`](https://github.com/jwmurray/rust-ffi-demo/blob/master/calling-ffi/node/src/print_ffi_types.js)
 
 ```js
 const ffi = require('ffi-napi');
@@ -1406,7 +1406,7 @@ the output like below:
 
 ###### 7.2.3 How to load dynamic library and call extern function
 
-Here is the [`src/calling-rust-in-node.js`](https://github.com/wisonye/rust-ffi-demo/blob/master/calling-ffi/node/src/calling-rust-in-node.js).
+Here is the [`src/calling-rust-in-node.js`](https://github.com/jwmurray/rust-ffi-demo/blob/master/calling-ffi/node/src/calling-rust-in-node.js).
 
 </br>
 
@@ -1470,14 +1470,14 @@ const librust = ffi.Library(`../../ffi-dynamic-lib/rust/target/release/librust`,
 })
 
 const newPersonPtr = librust.create_new_person(
-    `Wison`,
+    `John`,
     `Ye`,
     1,
     50,
-    `Wison's street_address here`,
-    `Wison's city here`,
-    `Wison's state here`,
-    `Wison's country here`,
+    `John's street_address here`,
+    `John's city here`,
+    `John's state here`,
+    `John's country here`,
 )
 
 try {

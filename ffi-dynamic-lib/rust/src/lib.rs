@@ -1,3 +1,4 @@
+#![allow(unused_must_use, dead_code)]
 use std::ffi::{CStr, CString};
 use std::os::raw::{c_char, c_uchar};
 
@@ -204,4 +205,3 @@ pub extern "C" fn release_get_person_info(info_ptr: *mut c_char) {
         CString::from_raw(info_ptr);
     }
 }
-

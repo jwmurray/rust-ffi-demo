@@ -1,4 +1,5 @@
 // FFI custom build script.
+use std::fs;
 
 #[cfg(not(feature = "enable-manual-bindings"))]
 use bindgen;
@@ -35,6 +36,18 @@ fn main() {
     //
     println!("cargo:rustc-link-search=native=../../ffi-dynamic-lib/cpp/build");
 
+    // Copy the `libdemo.dylib` file to the output directory
+    let out_dir = env::var("OUT_DIR").unwrap();
+    let profile = env::var("PROFILE").unwrap();
+    let target_dir = PathBuf::from(out_dir)
+        .join(format!("../../../../{}", profile))
+        .canonicalize()
+        .unwrap();
+    let lib_path = PathBuf::from("../../ffi-dynamic-lib/cpp/build/libdemo.dylib");
+    let target_lib_path = target_dir.join("libdemo.dylib");
+
+    fs::copy(&lib_path, &target_lib_path).expect("Failed to copy libdemo.dylib");
+
     #[cfg(not(feature = "enable-manual-bindings"))]
     {
         // Tell cargo to invalidate the built crate whenever the wrapper changes
@@ -50,7 +63,7 @@ fn main() {
         let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
         println!("out_put: {:#?}", &out_path);
 
-        // The bindgen::Builder is the main entry point to bindgen, and lets 
+        // The bindgen::Builder is the main entry point to bindgen, and lets
         // you build up options for the resulting bindings.
         let bindings = bindgen::Builder::default()
             // The input header we would like to generate bindings for.

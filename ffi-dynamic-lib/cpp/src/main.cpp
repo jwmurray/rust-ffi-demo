@@ -18,14 +18,14 @@ int main() {
   print_person_info(NULL);
 
   {
-    Person *ptr_to_wison =
-        create_new_person("Wison", "Ye", Gender::Male, 88,
+    Person *ptr_to_john =
+        create_new_person("John", "Murray", Gender::Male, 88,
                           Location{"No 10, ABC Street", "Nice city",
                                    "Nice state", "Nice country"});
-    print_person_info(ptr_to_wison);
-    cout << get_person_info(ptr_to_wison) << endl;
+    print_person_info(ptr_to_john);
+    cout << get_person_info(ptr_to_john) << endl;
 
-    release_person_pointer(ptr_to_wison);
+    release_person_pointer(ptr_to_john);
   }
 
   Person *ptr_to_lucy;
